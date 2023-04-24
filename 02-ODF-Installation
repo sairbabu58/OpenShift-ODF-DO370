@@ -1,0 +1,28 @@
+# OpenShift ODF installation
+
+# Three types ODF installation process.
+  1) Internal mode
+  2) Internal - Attached Devices mode
+  3) External mode
+  
+  
+# ODF Installation with 'Internal - Attached Devices mode'
+
+Prerequisite:
+-------------
+
+  1) OpenShift Cluster availability
+  2) Three orker nodes with additional DISK (sdb, sdc)
+  3) Local Storage Operator and configuration
+  4) ODF Operator installation and configuration
+  
+  
+Pratical steeps:
+----------------
+  $ Login to OCP cluster as a cluster-admin role
+  $ oc get nodes -l node-role.kubernetes.io/worker=
+  $ oc label nodes -l node-role.kubernetes.io/worker=  cluster.ocs.openshift.io/openshift-storage=
+  $ Open the OpenShift Console
+  $ OperatorHub -> Install LocalStorage
+  $ Go with default setting 
+  $ Create instance called 'Create Local Volume Discovery' -> choose All nodes with default setting 
