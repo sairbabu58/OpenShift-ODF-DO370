@@ -19,10 +19,52 @@ Prerequisite:
   
 Pratical steeps:
 ----------------
+
+LSO Installation
+
   $ Login to OCP cluster as a cluster-admin role
   $ oc get nodes -l node-role.kubernetes.io/worker=
   $ oc label nodes -l node-role.kubernetes.io/worker=  cluster.ocs.openshift.io/openshift-storage=
   $ Open the OpenShift Console
+  
   $ OperatorHub -> Install LocalStorage
   $ Go with default setting 
-  $ Create instance called 'Create Local Volume Discovery' -> choose All nodes with default setting 
+  
+  $ Create instance called 'Create Local Volume Discovery' -> choose All nodes with default setting
+     All Nodes: (Choose this one)
+     Select Nodes: {}
+  
+  $ Create instance called 'Create Local Volume Set' -> choose All nodes with default setting 
+     Volume Set name: lso-volumeset
+     Storage Class Name: {}
+     Node Selector:
+         All Nodes: (3 nodes)
+         Selected Nodes: {}
+     
+  
+ODF Installation
+
+  $ OperatorHub > Install ODF Operator
+  $ Create instance called 'Create StorageCluster'
+    Internal:
+    Internal - Attached Devices: (Choose this one)
+    External: 
+  
+    Storage Class: lso-volumeset
+   
+    Encryption: {}
+   
+  $ Create
+  
+  
+Validation:
+----------
+ $ oc get localvolumediscovery,localvolumediscoveryresults -n openshift-local-storage
+ $ oc get localvolumeset -n openshift-local-storage
+ 
+ $ oc get operatorgroups,subscriptions,clusterserviceversions -n openshift-local-storage
+ $ oc get storagecluster -n openshift-storage
+ $ oc get po -n openshift-storage
+ $ oc get sc
+
+
