@@ -90,6 +90,41 @@ $ oc get localvolumeser (How many disk is going to use. example if we selected 3
 
 If any Installation issues:
 $ oc debug no/worker-<X> -- rm -rf /mnt/*
+$ oc delete localvolumediscovery
+$ oc delete localvolumediscoveryresult
+$ oc delete localvolumeset
+$ oc delete ns openshift-local-storage
 
+
+-------
+$ oc project openshift-local-storage
+
+$ oc get po
+NAME                                      READY   STATUS    RESTARTS   AGE
+diskmaker-discovery-442dg                 2/2     Running   0          10h
+diskmaker-discovery-ncrn6                 2/2     Running   0          10h
+diskmaker-discovery-njss7                 2/2     Running   0          10h
+diskmaker-manager-f5thx                   2/2     Running   0          10h
+diskmaker-manager-fnqtq                   2/2     Running   0          10h
+diskmaker-manager-rbf8f                   2/2     Running   0          10h
+local-storage-operator-56d5f487d7-5jspj   1/1     Running   0          10h
+$
+
+$oc get localvolumediscovery
+NAME                    AGE
+auto-discover-devices   10h
+$
+
+$ oc get localvolumediscoveryresult
+NAME                       AGE
+discovery-result-worker0   10h
+discovery-result-worker1   10h
+discovery-result-worker2   10h
+$
+
+$ oc get localvolumeset
+NAME               STORAGECLASS       PROVISIONED   AGE
+local-storage-sc   local-storage-sc   3             10h
+$
 
 
