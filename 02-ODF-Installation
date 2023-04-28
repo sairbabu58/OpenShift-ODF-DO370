@@ -127,4 +127,6 @@ NAME               STORAGECLASS       PROVISIONED   AGE
 local-storage-sc   local-storage-sc   3             10h
 $
 
+https://bugzilla.redhat.com/show_bug.cgi?id=1937145
+https://docs.openshift.com/container-platform/4.10/storage/persistent_storage/persistent-storage-local.html#local-removing-device_persistent-storage-local
 
