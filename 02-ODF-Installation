@@ -82,3 +82,14 @@ Validation:
  $ oc get sc
 
 
+
+$ oc get localvolumediscovery (Node details, which nodes are going to use)
+$ oc get localvolumediscoveryresult (Nodes available disk details, which disk is going to use. Available '/dev/sdb, /dev/sdc' and NotAvailable '/dev/sda- root and boot'  disk details)
+$ oc get localvolumeser (How many disk is going to use. example if we selected 3 nodes and each node have 2 disk. that means total 6 disk it will show)
+
+
+If any Installation issues:
+$ oc debug no/worker-<X> -- rm -rf /mnt/*
+
+
+
