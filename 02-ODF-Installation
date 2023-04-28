@@ -12,7 +12,7 @@ Prerequisite:
 -------------
 
   1) OpenShift Cluster availability
-  2) Three orker nodes with additional DISK (sdb, sdc)
+  2) Three worker nodes with additional DISK (sdb, sdc)
   3) Local Storage Operator and configuration
   4) ODF Operator installation and configuration
   
@@ -34,25 +34,39 @@ LSO Installation
      All Nodes: (Choose this one)
      Select Nodes: {}
   
-  $ Create instance called 'Create Local Volume Set' -> choose All nodes with default setting 
-     Volume Set name: lso-volumeset
-     Storage Class Name: {}
-     Node Selector:
-         All Nodes: (3 nodes)
-         Selected Nodes: {}
-     
+  $ Note: Do not create 'LocalVolumeSet' (Through ODF dashboard we can create it)
+  
+ 
   
 ODF Installation
 
   $ OperatorHub > Install ODF Operator
-  $ Create instance called 'Create StorageCluster'
-    Internal:
-    Internal - Attached Devices: (Choose this one)
-    External: 
   
-    Storage Class: lso-volumeset
+  $ Optional: OpenShift WebUI -> Storage -> DataFundation -> Create StorageCluster
+  
+  $ Create instance called 'Create StorageCluster'
+  
+   Blocking Storage:
    
-    Encryption: {}
+    Internal (Use an existing StorageClass):
+      Note: We can use only Hosting Platform like, default SorageClass with Vsphere, AWS, Azure ..etc
+    Internal - Attached Devices (Create a new StorageClass using LocalStorage device): (Choose this one)
+      Note: ODF will use StorageClass provider by LocalStorage Operator. this option is available for any platform provider 
+    External (Connect an External Platform):
+      Note: ODF will create dedicated StorageClass
+  
+  Create LocalVolumeSet:
+  
+   LocalVolumeSet Name: 
+   StorageClass Name: 
+   Filter Disk By: Disk on all nodes: (select this)
+                   Disk on selected nodes: {}
+   
+ Capacity and Nodes:
+ 
+ Security and Network: 
+   Encrypt Disk:
+   Encrypt StorageClass:
    
   $ Create
   
