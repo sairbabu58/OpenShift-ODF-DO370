@@ -1,5 +1,6 @@
 # How to clean ODF storage from backend
 
 https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/4.12/html/managing_and_allocating_storage_resources/reclaiming-space-on-target-volumes_rhodf#doc-wrapper
+https://access.redhat.com/solutions/5799741
 
 1) After deleted pv/pvc backen ODF storage space not getting free.
