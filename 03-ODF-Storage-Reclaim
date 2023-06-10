@@ -4,3 +4,18 @@ https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/
 https://access.redhat.com/solutions/5799741
 
 1) After deleted pv/pvc backen ODF storage space not getting free.
+
+
+
+$ oc rsh -n openshift-storage $(oc get pods -n openshift-storage -o name -l app=rock-ceph-operator)
+$ sh> export CEPH_ARGS='-c /var/lib/rook/openshift-storage/openshift-storage.config'
+
+$ sh> rbd -p ocs-storagecluster-cephblockpool ls volumes
+
+$ oc get pv -o 'custom-columns=NAME:.spec.claimRef.name,PVNAME:.metadata.name,STORAGECLASS:.spac.storageClassName,IMAGENAME:.spec.csi.volumeAttributes.imageName'|grep
+
+$ sh> rbd -p ocs-storagecluster-cephblockpool rm
+
+$ sh> rbd -p ocs-storagecluster-cephblockpool children
+
+$ oc delete pos app=csi-rbdplugin-provisioner app=csi-rbdplugin -n openshift-storage
